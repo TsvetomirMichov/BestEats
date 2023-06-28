@@ -1,0 +1,44 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "127.0.0.1",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "CrudTest",
+            "database": "cruddb",
+            "username": "root"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "Mysql",
+            "username": "root",
+            "database": "cruddb"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "testMySqol",
+            "database": "cruddb",
+            "username": "jasom",
+            "password": "passwrd357951852/*-"
+        }
+    ],
+    "git.ignoreLimitWarning": true
+}
