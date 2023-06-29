@@ -17,7 +17,7 @@ function Register() {
   const fetchUserDataRegister = async () => {
      //Getting data from the backend
     try {
-      const { data } = await axios.post('http://localhost:1337/register', {
+      const { data } = await axios.post('https://foodordering-api-1q9i.onrender.com/register', {
         ...values,
       },
         {// // We use [ Credentials ]  To enable HTTP cookies over CORS 

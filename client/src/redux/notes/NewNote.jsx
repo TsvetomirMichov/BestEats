@@ -32,7 +32,7 @@ const NewNote = () => {
             // console.log(todoImage)
 
             try {
-                await axios.post("http://localhost:1337/upload", data)
+                await axios.post("https://foodordering-api-1q9i.onrender.com/upload", data)
             } catch (error) {
                 console.log(error)
             }
@@ -40,7 +40,7 @@ const NewNote = () => {
         
         try {
             // await axios.post("http://localhost:1337/home", {text,title,createdBy:user.name,picture})
-            await axios.post("http://localhost:1337/newProduct", newPost)
+            await axios.post("https://foodordering-api-1q9i.onrender.com/newProduct", newPost)
             redirect("/admin")
 
         } catch (err) {

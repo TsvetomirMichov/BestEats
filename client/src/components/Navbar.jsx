@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose, AiFillTag, AiFillShopping } from 'react-icons/ai';
-import { BsFillCartFill, BsFillSaveFill } from 'react-icons/bs';
-import { TbTruckDelivery } from 'react-icons/tb'
-import { FaUserFriends, FaWallet } from 'react-icons/fa'
-import { MdFavorite, MdHelp } from 'react-icons/md'
-import { useDispatch, useSelector } from 'react-redux';
+import {  AiOutlineSearch } from 'react-icons/ai';
+import { BsFillCartFill } from 'react-icons/bs';
+import {  useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Cart from './Cart';
 import { useGetSeachDataQuery } from '../redux/notes/noteApiSlice';
-import { addProduct } from '../redux/cart/cartSlice';
 import SearchedItems from './SearchedItems';
 import { useLogoutMutation } from '../redux/auth/authApiSlice';
 import { useAppselector } from '../redux/store';
-
 
 const Navbar = () => {
   const [nav, setNav] = useState(false)
@@ -27,7 +22,7 @@ const Navbar = () => {
 
   const { data = [], isLoading, isFetching, isError } = useGetSeachDataQuery()
 
-  const PF = "http://localhost:1337/images/";
+  const PF = "https://foodordering-api-1q9i.onrender.com/images/";
 
   // Function to toggle the menu state
   const toggleMenu = async () => {

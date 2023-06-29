@@ -1,10 +1,7 @@
 const ProductModel = require("../models/ProductModel")
 var fs = require('fs');
 module.exports.createProduct = async (req, res, next) => {
-    //  const { text ,title ,createdBy,picture} = req.body
-    //TodoD.create({ text ,title ,createdBy,picture});
     const newPost = new ProductModel(req.body)
-
     try {
         const textSended = await newPost.save();
         res.status(200).json(textSended)
@@ -33,14 +30,12 @@ module.exports.deleteProduct = async (req, res, next) => {
         } else {
             res.status(404).json({ error: "Todo not found" });
         }
-        // console.log(({ deleted: "deleted todo", todo: delTodo }));
     } catch (err) {
         console.log(err);
     }
 }
 
 module.exports.updateProduct = async (req, res, next) => {
-
     const { id, title, text, todoImage, category, price } = req.body;
 
     try {

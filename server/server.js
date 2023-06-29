@@ -8,17 +8,16 @@ const mongoose=require('mongoose');
 var multer  = require('multer')
 const path = require("path")
 const cookieParser=require('cookie-parser');
-
 // We use [ Credentials ]  To enable HTTP cookies over CORS
 app.use(
   cors({
-    origin: ["http://127.0.0.1:3000"],
+    origin: ["http://127.0.0.1:3000/"],
     methods: ["GET", "POST","DELETE","PUT"],
     credentials: true,
   })
 );
 
-const dbURL="mongodb+srv://TsM:jnkpJUYz5c8Or14w@tsm.4m8iv.mongodb.net/";
+const dbURL=process.env.MONGO_URI;
 //Importing bcrypt for more securyty of the password with hashing
 
 mongoose.connect(dbURL,{useNewUrlParser:true , useUnifiedTopology:true}).then((result)=>{

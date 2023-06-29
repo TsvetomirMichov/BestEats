@@ -12,8 +12,8 @@ const EditNote = () => {
             note: data?.entities[id]
         }),
     })
-    console.log(note)
-    const PF = "http://localhost:1337/images/";
+    // console.log(note)
+    const PF = "https://foodordering-api-1q9i.onrender.com/images/";
     const [text, setTodo] = useState('');
     const [title, setTodoTitle] = useState("");
     const [category, setTodoCategory] = useState("");
@@ -48,7 +48,7 @@ const EditNote = () => {
             // console.log(filename)
             // console.log(todoImage)
              try {
-                await axios.post("http://localhost:1337/upload", data)
+                await axios.post("https://foodordering-api-1q9i.onrender.com/upload", data)
             } catch (error) {
                 console.log(error)
             }

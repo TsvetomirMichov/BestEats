@@ -1,12 +1,9 @@
 import React from 'react'
 import {useRef,useState,useEffect} from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'  
 import { setCredentials } from '../../redux/auth/AuthSlice' 
 import { useLoginMutation } from '../../redux/auth/authApiSlice'
-import useAuth from '../../hooks/useAuth'
-import jwtDecode from 'jwt-decode'
-import { useAppselector } from '../../redux/store'
 import usePersist from '../../hooks/usePersist'
 
 const Login = () => {

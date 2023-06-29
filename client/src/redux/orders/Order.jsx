@@ -1,9 +1,4 @@
-import { useNavigate } from 'react-router-dom'
-
-import { useSelector } from 'react-redux'
-import { selectNoteById, useDeleteNoteMutation } from './orderApiSlice'
-import { useGetNotesQuery } from './orderApiSlice'
-import axios from 'axios'
+import { useDeleteNoteMutation } from './orderApiSlice'
 import { memo } from 'react'
 const Order = ({ orderId }) => {
 
@@ -26,7 +21,7 @@ const Order = ({ orderId }) => {
   }
   // const navigate = useNavigate()
 
-  const PF = "http://localhost:1337/images/";
+  const PF = "https://foodordering-api-1q9i.onrender.com/images/";
 
   if (note) {
    

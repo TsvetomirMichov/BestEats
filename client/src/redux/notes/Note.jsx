@@ -29,7 +29,7 @@ const Note = ({ noteId }) => {
 
   // const navigate = useNavigate()
 
-  const PF = "http://localhost:1337/images/";
+  const PF = "https://foodordering-api-1q9i.onrender.com/images/";
 
   if (note) {
     // const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })

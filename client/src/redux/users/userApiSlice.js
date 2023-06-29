@@ -12,19 +12,6 @@ const initialState = orderAdapter.getInitialState()
 
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        // getOrders: builder.query({
-        //     query: () => '/getAllOrders',
-        //     validateStatus: (response) => {
-        //         return response.status === 200
-        //     },
-        //     transformResponse: responseData => {
-        //         const loadedNotes = responseData.map(note => {
-        //             note.id = note._id
-        //             return note
-        //         });
-        //         return orderAdapter.setAll(initialState, loadedNotes)
-        //     },
-        // }),
         getUsers: builder.query({
             query: () => ({
                 url: '/getAllUsers',

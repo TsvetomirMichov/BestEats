@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SearchedItems = ({ items }) => {
-  const PF = "http://localhost:1337/images/";
+  const PF = "https://foodordering-api-1q9i.onrender.com/images/";
 
   return (
     <div className="absolute left-5 sm:left-1/4 md:left-1/3 top-16 z-10">

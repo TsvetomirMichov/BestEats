@@ -2,14 +2,6 @@ const UserData = require("../models/SignUpModels")
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
-// const MaxAge = 24 * 60 * 60;
-// const CreateToken = (user) => {
-//     return jwt.sign(
-//         { _id: user._id, name: user.name, role: user.role },
-//         "secret123",
-//         { expiresIn: '10s' })
-// }
-
 module.exports.register = async (req, res, next) => {
     try {
         const { name, email, password, phone, role } = req.body;
@@ -34,12 +26,12 @@ module.exports.login = async (req, res, next) => {
 
         const accessToken = jwt.sign(
             { _id: user._id, name: user.name, role: user.role ,phone:user.phone},
-            "secret123",
+            process.env.ACCESS_TOKEN,
             { expiresIn: '10m' })
 
         const refreshToken = jwt.sign(
             { _id: user._id, name: user.name, role: user.role , phone: user.phone},
-            "secret123",
+            process.env.REFRESH_TOKEN,
             { expiresIn: '7d' }
         )
 
@@ -69,7 +61,7 @@ module.exports.refresh = (req, res) => {
 
     if (token) {
         jwt.verify(token,
-            "secret123",
+            process.env.REFRESH_TOKEN,
             async (err, decodedToken) => {
                 if (err) {
                     return res.status(403).json({ message: 'No tokne found' })
@@ -79,7 +71,7 @@ module.exports.refresh = (req, res) => {
                     if (foundUser) {
                         const accessToken = jwt.sign(
                             { _id: foundUser._id, name: foundUser.name, role: foundUser.role },
-                            "secret123",
+                            process.env.REFRESH_TOKEN,
                             { expiresIn: '1h' }
                         )
                         return res.json({ accessToken })
@@ -135,7 +127,6 @@ module.exports.deleteUser = async (req, res, next) => {
         } else {
             res.status(404).json({ error: "Todo not found" });
         }
-        // console.log(({ deleted: "deleted todo", todo: deletedUser }));
     } catch (err) {
         console.log(err);
     }

@@ -23,7 +23,7 @@ const OrdersList = () => {
         content = <p className="errmsg">{error?.data?.message}</p>
     }
 
-    const PF = "http://localhost:1337/images/";
+    const PF = "https://foodordering-api-1q9i.onrender.com/images/";
 
     const updateOrderState = async (id)=>{
      
@@ -86,7 +86,6 @@ const OrdersList = () => {
                                 <td className={item.status === 'in-progress' ? "px-3 py-4 font-semibold text-red-500 dark:text-white" : "px-3 py-4 font-semibold text-green-500 dark:text-white"}>
                                     {item.status }
                                 </td>
-                              
                             </tr>
                             </tbody>
                         </table>

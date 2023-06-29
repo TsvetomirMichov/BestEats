@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const baseQuery=fetchBaseQuery({
-    baseUrl: 'https://foodordering-api/com',
+    baseUrl: 'https://foodordering-api-1q9i.onrender.com',
     credentials:'include',
     prepareHeaders:(headers,{ getState })=>{
         const token=getState().auth.token

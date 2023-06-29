@@ -15,7 +15,7 @@ export const FoodsHolder = ({ noteId }) => {
     })
     const dispatch = useDispatch()
 
-    const PF = "http://localhost:1337/images/";
+    const PF = "https://foodordering-api-1q9i.onrender.com/images/";
 
     return (
         <div className='grid grid-cols-2 md:grid-cols-3 gap-6 pt-4' >

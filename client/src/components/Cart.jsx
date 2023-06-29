@@ -17,7 +17,7 @@ const Cart = () => {
     let phone 
     const effRan=useRef(false)
    
-    const PF = "http://localhost:1337/images/";
+    const PF = "https://foodordering-api-1q9i.onrender.com/images/";
 
     const totalPrice = () => {
         let total = 0;
@@ -41,7 +41,7 @@ const Cart = () => {
 
     const handlePayment = async (e) => {
         try {
-             await axios.post('http://localhost:1337/createOrder', {  orderDetails ,userName ,phone }).then( dispatch(resetCart()));
+             await axios.post('https://foodordering-api-1q9i.onrender.com/createOrder', {  orderDetails ,userName ,phone }).then( dispatch(resetCart()));
 
         } catch (error) {
             console.error(error);
