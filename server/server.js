@@ -12,7 +12,7 @@ const { setChache } = require("./MIiddlewares/CacheMiddleware")
 // We use [ Credentials ]  To enable HTTP cookies over CORS
 app.use(
   cors({
-    origin: ["http://127.0.0.1:3000"],
+    origin: ["https://besteats.onrender.com/"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
