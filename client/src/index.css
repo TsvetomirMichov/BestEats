@@ -5,4 +5,32 @@
 *{ 
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 1.5em;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content:center;
+    align-items: center;
+  }
+  
+  .swiper {
+    width: 100%;
+    height: 5em;
+    margin: 3em auto;
+  }
+
+  .image-user{
+    width:  0.9em;
+    height: 0.9em;
+  }
+
+  .arrow{
+    width: 40px;
+    height: 40px;
+  }

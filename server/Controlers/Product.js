@@ -1,5 +1,6 @@
 const ProductModel = require("../models/ProductModel")
 var fs = require('fs');
+
 module.exports.createProduct = async (req, res, next) => {
     const newPost = new ProductModel(req.body)
     try {
@@ -38,6 +39,10 @@ module.exports.deleteProduct = async (req, res, next) => {
 module.exports.updateProduct = async (req, res, next) => {
     const { id, title, text, todoImage, category, price } = req.body;
 
+    // console.log(id)
+    // console.log(title)
+    // console.log(text)
+
     try {
         // Confirm data
         if (!id || !text || !title || !category || !price || !todoImage) {
@@ -61,9 +66,9 @@ module.exports.updateProduct = async (req, res, next) => {
 
         recepi.title = title
         recepi.text = text
+        recepi.price = price
+        recepi.todoImage = todoImage
         recepi.category = category
-        recepi.price = price
-        recepi.price = price
 
         const updatedProduct = await recepi.save()
 
@@ -75,13 +80,37 @@ module.exports.updateProduct = async (req, res, next) => {
 }
 
 module.exports.getSingleProduct = async (req, res, next) => {
-    const { id } = req.body;
+    const { id } = req.params; // Use req.params to get the ID from the URL parameter
 
     try {
-        const readSingle = await ProductModel.findById(id);
-        res.status(200).json(readSingle)
+        const data = await ProductModel.findById(id);
+        if (!data) {
+            // Handle the case where no product is found with the given ID
+            return res.status(404).json({ error: "Product not found" });
+        }
+
+        res.status(200).json(data);
 
     } catch (err) {
-        console.log(err)
+        console.error(err);
+        // Handle other errors, e.g., database errors
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+module.exports.getRealatedProducts = async (req, res) => {
+    const { category } = req.params
+
+    console.log(category )
+
+    try {
+        const products = await ProductModel.find({ category: `${category}` })
+
+        res.status(200).json(products)
+
+    } catch (err) {
+        console.error(err);
+        // Handle other errors, e.g., database errors
+        res.status(500).json({ error: "Internal server error" });
     }
 }

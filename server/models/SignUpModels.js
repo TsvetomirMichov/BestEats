@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcript = require('bcryptjs')
-var validator = require("validator");
+var validatorPackage = require("validator");
 
 const User = new mongoose.Schema(
     {
@@ -13,7 +13,11 @@ const User = new mongoose.Schema(
             type: String,
             required: [true, "email is required"],
             unique: true,
-            validate: [validator.isEmail, "Please ender a valid email"]
+            lowercase: true,
+            validate: {
+                validator: validatorPackage.isEmail,
+                message: "Please enter a valid email"
+            }
         },
         password: {
             type: String,
@@ -21,25 +25,25 @@ const User = new mongoose.Schema(
             minlength: 6,
             maxlength: 50
         },
-        phone:{
-            type:Number,
+        phone: {
+            type: Number,
             required: [true, "phone is required"],
             minlength: 8,
             maxlength: 9,
         },
-        role:{
+        role: {
             type: String,
         }
-    },
-    { colletion: "user-data" }
+    }
 )
 // Salt add 32 or more bits to the password before is hashed
 // .pre means before saving to the password is added a salt and its hashed before saving to the DB
-User.pre("save", async function (next) {
-    const salt = await bcript.genSalt()
+User.pre('save', async function (next) {
+    const salt = await bcript.genSalt(10)
     this.password = await bcript.hash(this.password, salt)
-    next();
+    next()
 })
+
 User.statics.login = async function (email, password) {
     const user = await this.findOne({ email })
     if (user) {

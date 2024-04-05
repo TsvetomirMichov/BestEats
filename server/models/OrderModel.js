@@ -1,26 +1,30 @@
-const mongoose=require('mongoose')
+const mongoose = require('mongoose')
 
 const OrderData = new mongoose.Schema(
     {
-        orderDetails:{
+        orderDetails: {
             type: Array,
             required: [true, "order details are required"],
         },
-        userName:{
+        userName: {
             type: String,
             required: [true, "user name is required"]
         },
-        phone:{
-            type:Number,
+        phone: {
+            type: Number,
+            require: [true, "phone is required"]
         },
-        status:{
+        totalPrice: {
+            type: Number,
+            require: [true, "totalPrice is required"]
+        },
+        status: {
             type: String,
-            default:"in-progress"
-        }
-    },
-    { colletion: "orders" }
-)
+            default: "in-progress"
+        },
+       
+    })
 
 const OrderModule = mongoose.model('order-data', OrderData)
 
-module.exports=OrderModule;
+module.exports = OrderModule;

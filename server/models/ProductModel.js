@@ -21,10 +21,9 @@ const ProductData = new mongoose.Schema(
         price:{
             type:Number,
             required:true
-        }
-    },
-    { colletion: "toto-data" }
-)
+        },
+    
+    })
 
 const ProductModel = mongoose.model('Todo-data', ProductData)
 

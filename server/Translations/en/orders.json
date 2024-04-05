@@ -1,0 +1,26 @@
+{
+  "orderDetails": [
+    {
+      "id": "6496fc942a2d917fa4662eb6",
+      "title": "Carbonara Chicken Wrap",
+      "desc": "Fresh Wrap made with Grilled chicken, bacon, mushrooms, provolone, Parmesan, and mayo.",
+      "price": 22,
+      "img": "https://res.cloudinary.com/tsmichov/image/upload/v1689516213/foodordering-app/ugsblpiljntbrj2cmhfb.jpg",
+      "quantity": 1
+    },
+    {
+      "id": "64b1786c8fc60dda867b4acc",
+      "title": "Bacon-Cheeseburger",
+      "desc": "Fresh patties hot off the grill with American- style cheese and crispy apple-wood smoked bacon. Placed on a soft, toasted sesame seed bun. Choose as many toppings as you want. \n",
+      "price": 15,
+      "img": "https://res.cloudinary.com/tsmichov/image/upload/v1689426998/foodordering-app/xz3houirdyb5vzqhicqf.jpg",
+      "quantity": 1
+    }
+  ],
+  "userName": "admin",
+  "phone": 896219240,
+  "totalPrice": 37,
+  "status": "in-progress",
+  "_id": "660fbd436d27cdb747ac2e74",
+  "__v": 0
+}

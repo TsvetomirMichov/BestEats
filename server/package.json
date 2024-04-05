@@ -19,6 +19,7 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.3",
     "mongosh": "^1.9.1",
@@ -27,6 +28,7 @@
     "nodemon": "^2.0.22",
     "npm-check-updates": "^16.10.12",
     "path": "^0.12.7",
-    "validator": "^13.9.0"
+    "validator": "^13.9.0",
+    "vercel": "^31.0.1"
   }
 }
