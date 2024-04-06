@@ -63,6 +63,6 @@ app.use("/", AuthRoutes, OrderRoutes, ProductRoute, RestaurantRoute,setChache)
 
 app.get('/', (req, res) => res.send("Server in running"))
 
-app.listen(1337, () => {
-  console.log(`running on port 1337`);
+app.listen("0.0.0.0", () => {
+  console.log(`running on port 0.0.0.0`);
 })
