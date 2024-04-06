@@ -5,7 +5,7 @@
   },
   "deploy": {
     "numReplicas": 2,
-    "start": "npm run start",
+    "start": "npm start",
     "sleepApplication": false,
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
