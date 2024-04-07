@@ -7,7 +7,9 @@ import axios from 'axios';
 import UserAccImage from '../../assets/UserAccount.svg'
 import { BiSolidDashboard } from 'react-icons/bi'
 import { VscAccount } from 'react-icons/vsc'
+import { TextField } from '@mui/material';
 
+import PaginationItems from '@mui/material/Pagination';
 
 type UserType = {
   _id: number,
@@ -61,15 +63,29 @@ const AccountDetails = () => {
 
   const navigate = useNavigate();
 
+
+  // Pagination states
+  const [page, setPage] = useState(1);
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
+  const ITEMS_PER_PAGE = 3;  // number of items to show per page
+
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  // Pagination states
+
+
   useEffect(() => {
     const loadUser = async (name: string) => {
       try {
-        const res = await axios.get('http://localhost:1337/getSingleUser', {
+        const res = await axios.get('https://besteats-production.up.railway.app/getSingleUser', {
           params: { name },
         });
 
-        if (res.data ) {
-          setUserData([res.data ]);
+        if (res.data) {
+          setUserData([res.data]);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -108,8 +124,8 @@ const AccountDetails = () => {
 
   if (isSuccess) {
     let myoders = notes
-      .filter((item:OrderDetailsType) => item.userName === name)
-      .map((item:OrderDetailsType, index: number) => (
+      .filter((itemFilter: OrderDetailsType) => itemFilter.userName === name).slice(startIndex,endIndex)
+      .map((item: OrderDetailsType, index: number) => (
         <div className="flex flex-col my-5  drop-shadow-lg rounded-md " key={index}>
           <div className="flex flex-col overflow-x-auto  ">
             <div>
@@ -165,6 +181,7 @@ const AccountDetails = () => {
               ))}
             </div>
           </div>
+
         </div>
       ));
     content = myoders;
@@ -207,36 +224,82 @@ const AccountDetails = () => {
                 and view account details. </span>
               <span className='text-[2em] font-semibold mb-[1em]'>Your Orders </span>
               {content}
+              <PaginationItems count={Math.ceil(notes?.length / ITEMS_PER_PAGE)}
+                page={page}
+                onChange={handleChange} />
             </div>
           }
 
           {activeButtonOpen === 'AccountDetails' &&
-            <div className='w-[30em]'>
+            <div className='w-full '>
 
               <h2 className="text-3xl font-semibold mb-3 text-orange-500">Account Details</h2>
               {userData.map((item: UserType) => (
-                <div key={item._id} className="flex flex-col gap-3 rounded-3xl p-5 bg-white border border-gray-200 shadow-lg">
-                  <div className="flex flex-col gap-5">
-                    <div className="flex items-center text-2xl">
-                      <label className="text-gray-600">Name:</label>
-                      <input type="text" value={item.name} className="input-field ml-3" readOnly />
+                <div key={item._id} className="flex flex-col gap-3 rounded-3xl ">
+                  <div className="flex flex-col py-5 gap-5">
+                    <div className="flex text-2xl">
+                      <TextField
+                        label="Name:"
+                        variant="standard"
+                        color="warning"
+                        sx={{ fontSize: "1.5rem", width: "100%" }} // Adjusted fontSize and width
+                        value={item.name}
+                        focused
+                        InputProps={{
+                          style: {
+                            fontSize: "1.5rem", // Adjusted fontSize
+                          },
+                        }}
+                      />
                     </div>
                     <div className="flex items-center text-2xl">
-                      <label className="text-gray-600">Email:</label>
-                      <input type="text" value={item.email} className="input-field ml-3" readOnly />
+                      <TextField
+                        label="Email:"
+                        variant="standard"
+                        color="warning"
+                        sx={{ fontSize: "1.5rem", width: "100%" }} // Adjusted fontSize and width
+                        value={item.email}
+                        focused
+                        InputProps={{
+                          style: {
+                            fontSize: "1.5rem", // Adjusted fontSize
+                          },
+                        }}
+                      />
                     </div>
                     <div className="flex items-center text-2xl">
-                      <label className="text-gray-600">Phone:</label>
-                      <input type="text" value={item.phone} className="input-field ml-3" readOnly />
+                      <TextField
+                        label="Phone:"
+                        variant="standard"
+                        color="warning"
+                        sx={{ fontSize: "1.5rem", width: "100%" }} // Adjusted fontSize and width
+                        value={item.phone}
+                        focused
+                        InputProps={{
+                          style: {
+                            fontSize: "1.5rem", // Adjusted fontSize
+                          },
+                        }}
+                      />
                     </div>
                     <div className="flex items-center text-2xl">
-                      <label className="text-gray-600">Role:</label>
-                      <input type="text" value={item.role} className="input-field ml-3" readOnly />
+                      <TextField
+                        label="Role:"
+                        variant="standard"
+                        color="warning"
+                        sx={{ fontSize: "1.5rem", width: "100%" }} // Adjusted fontSize and width
+                        value={item.role}
+                        focused
+                        InputProps={{
+                          style: {
+                            fontSize: "1.5rem", // Adjusted fontSize
+                          },
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
               ))}
-
 
             </div>
           }
@@ -248,4 +311,3 @@ const AccountDetails = () => {
 };
 
 export default AccountDetails;
-
