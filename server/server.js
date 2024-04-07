@@ -63,6 +63,10 @@ app.use("/", AuthRoutes, OrderRoutes, ProductRoute, RestaurantRoute,setChache)
 
 app.get('/', (req, res) => res.send("Server in running"))
 
-app.listen(1337, () => {
-  console.log(`running on port 0.0.0.0`);
-})
+// Use PORT provided in environment or default to 3000
+const port = 1337 || 3000;
+
+// Listen on `port` and 0.0.0.0
+app.listen(port, "0.0.0.0", function () {
+  res.send("server is running")
+});
