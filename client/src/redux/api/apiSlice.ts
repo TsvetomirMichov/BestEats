@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { RootState } from '../store'
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'besteats-production.up.railway.app',
+    baseUrl: 'https://besteats-production.up.railway.app/',
     credentials: 'include',
     prepareHeaders: (headers: Headers, { getState }) => {
         const token = (getState() as RootState).auth.token
