@@ -17,8 +17,6 @@ import AccountDetails from './pages/AccountDetails/AccountDetails';
 import RestaurantNew from './redux/Restaurant/RestaurantNew';
 import RestaurantEdit from './redux/Restaurant/RestaurantEdit';
 import RestaurantDetails from './pages/RestaurantDetails/RestaurantDetails';
-import ShoppingCartStepper from './pages/ShoppingCartStepper/ShoppingCartStepper';
-import { useEffect } from 'react';
 
 function App() {
 
@@ -45,7 +43,6 @@ function App() {
           <Route path="prductDetails/:id" element={<ProductDetails />} />
           <Route path="accountSettings" element={<AccountDetails />} />
           <Route path="restaurantDetails/:id" element={<RestaurantDetails />} />
-          <Route path="shoppingDetails" element={<ShoppingCartStepper />} />
           {/* </Route> */}
         </Route>
 
