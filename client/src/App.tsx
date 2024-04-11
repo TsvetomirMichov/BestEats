@@ -17,6 +17,7 @@ import AccountDetails from './pages/AccountDetails/AccountDetails';
 import RestaurantNew from './redux/Restaurant/RestaurantNew';
 import RestaurantEdit from './redux/Restaurant/RestaurantEdit';
 import RestaurantDetails from './pages/RestaurantDetails/RestaurantDetails';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 function App() {
 
@@ -48,6 +49,8 @@ function App() {
 
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="about" element={<AboutUs />} />
+
         <Route element={<PersistLogin />}>
           {/* <Route element={<Prefetch />}> */}
           <Route element={<RequireAuth />}>
