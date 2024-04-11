@@ -90,12 +90,8 @@ const EditNote = () => {
         }
 
         if (text !== null && title !== null && category !== null && price !== null) {
-            try {
-                console.log(productImage)
-                console.log("Text props title ", title)
-                console.log("Text props text: ", text)
+            try { 
                 const updteP = await updatedRecepi({ initialNote });
-                console.log(updteP)
                 if (result) {
                     navigate('/admin')
                 }
