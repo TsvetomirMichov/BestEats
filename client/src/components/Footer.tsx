@@ -21,6 +21,9 @@ const Footer = () => {
       .then(
         () => {
           console.log('SUCCESS!');
+           if(form.current){
+            form.current.reset()
+          } 
         },
         (error) => {
           console.log('FAILED...', error.text);
