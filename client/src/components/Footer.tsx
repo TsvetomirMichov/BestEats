@@ -75,7 +75,7 @@ const Footer = () => {
         </div>
 
         {/* Left and right content (replace with your links) */}
-        <div className='flex flex-col gap-4 justify-center '>
+        <div className='flex flex-col gap-4 justify-center py-6 '>
           <h1 className='text-xl font-semibold text-white '>{t("footer.company.title")}</h1>
           <Link to={"/about"} className='text-md text-white hover:text-orange-400'>{t("footer.company.links.aboutUs")}</Link>
           <a onClick={() => scrollToHowItWorks("howitworks")} className='text-md text-white hover:text-orange-400'>{t("footer.company.links.services")}</a>
