@@ -8,7 +8,7 @@ const WhyChooseOurResauran = () => {
     const { t } = useTranslation()
 
     return (
-        <div className='relative flex w-full' style={{ backgroundImage: `url(${BackgroundImage})`, width: '100%', height: 'auto', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', zIndex: '-1' }}>
+        <div id="whyourrestaurants" className='relative flex w-full' style={{ backgroundImage: `url(${BackgroundImage})`, width: '100%', height: 'auto', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', zIndex: '-1' }}>
             <div className='flex w-full flex-col bg-[rgba(0,0,0,0.8)] relative text-center py-[6em]'>
                 <p className='text-white text-[1em] uppercase font-light mt-auto'> {t("ourRestaurants.heading.text1")} </p>
                 <p className='text-white text-[2em] uppercase font-bold'>  {t("ourRestaurants.heading.text2")} </p>
