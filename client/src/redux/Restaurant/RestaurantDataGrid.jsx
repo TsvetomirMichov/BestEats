@@ -21,7 +21,6 @@ const Restaurant = () => {
   const [deleteRestaurant, { isSuccess }] = useDeleteRestaurantMutation()
 
   const handleDeleteRestaurant = async (id) => {
-    console.log("iD ",id)
     try {
        await deleteRestaurant({ id }).unwrap();
     } catch (err) {
