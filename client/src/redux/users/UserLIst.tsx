@@ -52,7 +52,7 @@ const UserList = () => {
 
     if (isSuccess) {
         let usersList = users.map((item: UserType, index: number) => (
-            <div className="m-5" key={index}>
+            <div className="m-5 overflow-x-auto" key={index}>
 
                 <table key={index} className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
