@@ -81,9 +81,6 @@ const RestaurantNew = () => {
         refetchOnMountOrArgChange: true
     })
 
-    console.log("Menu items :", menuItemsArray)
-    console.log("Data //50 :", data)
-
     let productDetails = [];
 
     if (data && menuItemsArray) {
@@ -94,7 +91,6 @@ const RestaurantNew = () => {
         productDetails = data.filter((dataItem: DataType) => !productIds.includes(dataItem._id));
 
     }
-    console.log("Product details : ", productDetails)
 
     // Chip component
     const theme = useTheme();
@@ -185,9 +181,6 @@ const RestaurantNew = () => {
                 newPost.avatarPic = avatarRes.data.secure_url;
             }
 
-            // let menuItems = productIdsSelected
-
-            // console.log({ ...newPost })
             // Make a POST request to your API endpoint
             const response = await axios.post("http://localhost:1337/restaurants/new", { ...newPost });
 
