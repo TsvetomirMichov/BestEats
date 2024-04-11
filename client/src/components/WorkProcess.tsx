@@ -5,7 +5,7 @@ const WorkProcess = () => {
     const { t } = useTranslation()
     
     return (
-        <div className='w-full relative my-[10em]'>
+        <div className='w-full relative my-[10em]  id="howitworks'>
             <div className='relative flex w-full' style={{ backgroundImage: `url(${BackgroundImage})`, width: '100%', height: '20em', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', zIndex: '-1' }}>
                 <div className='flex w-full flex-col bg-[rgba(0,0,0,0.5)] relative'>
                     <div className='relative h-full flex flex-col justify-center items-center text-white shadow-md z-2 p-8'>
