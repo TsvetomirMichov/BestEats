@@ -184,8 +184,8 @@ const RestaurantNew = () => {
             // Make a POST request to your API endpoint
             const response = await axios.post("http://localhost:1337/restaurants/new", { ...newPost });
 
-            console.log("Response : ", response)
-            console.log("Response : ", response.data)
+            // console.log("Response : ", response)
+            // console.log("Response : ", response.data)
             if (response.status === 200) {
                 // Redirect after successful creation
                 redirect("/admin");
