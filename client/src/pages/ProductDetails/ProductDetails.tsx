@@ -33,7 +33,7 @@ const ProductDetails = () => {
   if (isLoading) return <div>Loading...</div>
   if (!product) return <div>Missing post!</div>
 
-  console.log(category)
+  // console.log(category)
 
   return (
     <div className='flex flex-col h-full '>
