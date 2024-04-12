@@ -42,7 +42,7 @@ const NewNote = () => {
         }
 
         try {
-            const newProductCreated = await axios.post("http://localhost:1337/newProduct", newPost)
+            const newProductCreated = await axios.post("https://besteats-production.up.railway.app/newProduct", newPost)
             if (newProductCreated.status === 200) {
                 navigate("/admin")
             }
