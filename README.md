@@ -24,7 +24,7 @@ Best Eats is an online food ordering platform built with the MERN (MongoDB, Expr
 
 ## Demo
 
-Check out the live demo of Best Eats: [Demo Link](https://foodordering-app-vru8.onrender.com)
+Check out the live demo of Best Eats: [Demo Link](https://besteats.onrender.com/)
 
 ## Getting Started
 
