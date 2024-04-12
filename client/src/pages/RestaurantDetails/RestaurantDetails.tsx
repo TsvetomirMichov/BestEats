@@ -140,7 +140,7 @@ const RestaurantDetails = () => {
         let highestSelling = restaurant.menuItems[0];
 
         restaurant.menuItems.map((item: ProductType) => {
-            console.log("Item map ", item)
+            // console.log("Item map ", item)
             if (item.productId.price < lowestSelling.productId.price) {
                 lowestSelling = item;
             }
@@ -170,7 +170,7 @@ const RestaurantDetails = () => {
 
 
     useEffect(() => {
-        console.log("Selected index : ", selectedItemIndex);
+        // console.log("Selected index : ", selectedItemIndex);
 
         if (!restaurant || !restaurant.menuItems.length) return; // Exit early if there are no menu items
 
@@ -179,13 +179,13 @@ const RestaurantDetails = () => {
             .filter((item: ProductType, index: number, self: ProductType[]) => self.findIndex(i => i.productId?.category === item.productId?.category) === index)
             .map((item: ProductType) => item.productId.category)[selectedItemIndex]; // Select the first category    
 
-        console.log("Initial category:", initialCategory);
+        // console.log("Initial category:", initialCategory);
         setSelectedItemCategory(initialCategory);
 
         // Filter items based on the first category
         const selectedItems = restaurant.menuItems.filter((item: ProductType) => item.productId?.category === initialCategory);
 
-        console.log("Selected items:", selectedItems);
+        // console.log("Selected items:", selectedItems);
         setSelectedFilterItem(selectedItems);
     }, [restaurant, selectedItemIndex]);
 
@@ -197,7 +197,7 @@ const RestaurantDetails = () => {
 
         let updatedRaiting = await updateRaiting({ customerId, customerRaiting, id }).unwrap();
         if (isSuccess) {
-            console.log(updatedRaiting)
+            console.log("Success")
         }
     }
 
