@@ -358,7 +358,7 @@ const RestaurantDetails = () => {
                                 {activeButtonOpen === 'Reviews' &&
                                     <div className='w-full h-full bg-white flex items-center'>
                                         <div className='w-full h-full p-5 border border-gray-300 flex flex-col items-start'>
-                                            {userReview !== 0 ?
+                                            { userReview != 0 && userReview != undefined ?
 
                                                 <div>
                                                     <h1 className='text-xl text-black font-semibold my-10 '>
