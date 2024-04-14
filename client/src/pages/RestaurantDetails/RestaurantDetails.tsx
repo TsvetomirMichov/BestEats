@@ -483,30 +483,25 @@ const RestaurantDetails = () => {
                             }}>
                                 <img src={lowestSellingItem?.productId?.todoImage} alt="" className='w-[50%] h-[50%] object-cover justify-center items-center rounded-lg' />
                                 <h1 className='text-xl font-semibold text-start'>{lowestSellingItem?.productId?.title}</h1>
-                                <div className='flex flex-row w-full justify-evenly align-baseline'>
-
-                                    <p className='text-xl font-semibold py-5 text-start text-yellow-500'>${lowestSellingItem?.productId?.price}</p>
-
-                                    <button
-                                        className="flex w-auto items-center rounded-sm gap-2 bg-yellow-500 text-white font-medium py-2 px-2 "
-                                        onClick={() =>
-                                            dispatch(
-                                                addProduct({
-                                                    id: lowestSellingItem?.productId._id,
-                                                    title: lowestSellingItem?.productId.title,
-                                                    desc: lowestSellingItem?.productId.text,
-                                                    price: lowestSellingItem?.productId.price,
-                                                    img: lowestSellingItem?.productId.todoImage,
-                                                    quantity
-                                                })
-                                            )
-                                        }
-                                    >
-                                        <AiFillShopping /> ADD TO CART
-                                    </button>
-                                </div>
+                                <p className='text-xl font-semibold py-5 text-start text-yellow-500'>${lowestSellingItem?.productId?.price}</p>
+                                <button
+                                    className="flex w-auto items-center rounded-sm gap-2 bg-yellow-500 text-white font-medium py-2 px-2 "
+                                     onClick={() =>
+                                        dispatch(
+                                            addProduct({
+                                                id: lowestSellingItem?.productId._id,
+                                                title: lowestSellingItem?.productId.title,
+                                                desc: lowestSellingItem?.productId.text,
+                                                price: lowestSellingItem?.productId.price,
+                                                img: lowestSellingItem?.productId.todoImage,
+                                                quantity
+                                            })
+                                        )
+                                    }
+                                 >
+                                 <AiFillShopping /> ADD TO CART
+                                 </button>
                             </Box>
-
                         </Grid>
                     </Grid>
                 </Box>
