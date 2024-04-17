@@ -1,34 +1,69 @@
-import React from 'react'
-import { useDeleteRestaurantMutation, useGetRestaurantsQuery } from './restaurantApiSlice'
-import { DataGrid } from '@mui/x-data-grid';
-import { Avatar } from '@mui/material';
+
 import { useMemo } from 'react';
+import { useDeleteRestaurantMutation, useGetRestaurantsQuery } from './restaurantApiSlice';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { Avatar } from '@mui/material';
 import Rating from '@mui/material/Rating';
 import { Link } from 'react-router-dom';
 
-const Restaurant = () => {
+type CustomerIdType = {
+  email: string,
+  name: string,
+  password: string,
+  phone: number,
+  role: string,
+  _id: string
+}
 
+export interface CustomerRaiting {
+  customerId: CustomerIdType,
+  customerRaiting: number
+}
+
+type ProductType = {
+  productId: {
+      _id: string,
+      category: string,
+      price: number,
+      text: string,
+      todoImage: string,
+      title: string
+  }
+}
+
+interface RestaurantType {
+  _id: string,
+  avatarPic: string,
+  location: string,
+  representationPic: string,
+  restaurantInfo: string,
+  title: string,
+  workingHrs: number,
+  customerRaiting: CustomerRaiting[],
+  menuItems: ProductType[]
+}
+
+const Restaurant = () => {
   const {
     data: restaurants,
-    isFetching,
-    isLoading,
   } = useGetRestaurantsQuery("restaurantsList", {
     pollingInterval: 10000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true
-  })
+  });
 
-  const [deleteRestaurant, { isSuccess }] = useDeleteRestaurantMutation()
 
-  const handleDeleteRestaurant = async (id) => {
+  const [deleteRestaurant] = useDeleteRestaurantMutation();
+
+  const handleDeleteRestaurant = async (id: string) => {
     try {
-       await deleteRestaurant({ id }).unwrap();
+      await deleteRestaurant({ id }).unwrap();
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
-  const columns = useMemo(
+  const columns: GridColDef[] = useMemo(
     () => [
       {
         field: 'representationPic',
@@ -58,7 +93,6 @@ const Restaurant = () => {
       { field: 'location', headerName: 'Location', width: 200 },
       { field: 'workingHrs', headerName: 'Working Hours', width: 150 },
       { field: 'restaurantInfo', headerName: 'Info', width: 150 },
-      // Add other fields from your schema here
       { field: '_id', headerName: 'Id', width: 220 },
       {
         field: "action", headerName: "Action", width: 150, renderCell: (params) => {
@@ -67,56 +101,49 @@ const Restaurant = () => {
               <Link to={`restaurant/${params.row.id}`} className="link">
                 <div className="font-bold">Edit</div>
               </Link>
-              <button className="font-bold" onClick={() => handleDeleteRestaurant(params.id)}>Delete</button>
+              <button className="font-bold" onClick={() => handleDeleteRestaurant(params.row.id)}>Delete</button>
             </div>
-          )
+          );
         }
       }
     ],
+    []
   );
 
-  const rows = useMemo(() => {
+  const rows = useMemo<RestaurantType[]>(() => {
     if (restaurants) {
-      let raitings = []
+      let raitings: number[] = [];
 
-      const calculateTotalRating = (customerRaiting) => {
-          if (!customerRaiting || !customerRaiting.length) {
-              return 0;
-          }
-  
-          // Calculate the total rating using reduce
-          const totalRating = customerRaiting.reduce((total, rating) =>  total + rating.customerRaiting , 0);
-  
-          // Calculate the average rating
-          const averageRating = totalRating / customerRaiting.length;
-  
-          return averageRating;
+      const calculateTotalRating = (customerRaiting: { customerRaiting: number }[]) => {
+        if (!customerRaiting || !customerRaiting.length) {
+          return 0;
+        }
+
+        const totalRating = customerRaiting.reduce((total, rating) => total + rating.customerRaiting, 0);
+        const averageRating = totalRating / customerRaiting.length;
+
+        return averageRating;
       };
-  
-      // Now, you can use this function inside your map
-      restaurants?.map((item) => {
-          // Calculate the total rating for each restaurant
-          const totalRating = calculateTotalRating(item.customerRaiting);
-  
-          // Return the restaurant object with the total rating
-          raitings.push(totalRating)
-      });
-  
-      console.log("raitings : ", raitings)
 
-      return restaurants.map((restaurant,index) => ({
-        id: restaurant._id, // Make sure to include a unique identifier for each row
+      restaurants?.map((item:RestaurantType) => {
+        const totalRating = calculateTotalRating(item.customerRaiting);
+        raitings.push(totalRating);
+      });
+
+      return restaurants.map((restaurant:RestaurantType, index:number) => ({
+        id: restaurant._id,
         representationPic: restaurant.representationPic,
         avatarPic: restaurant.avatarPic,
         location: restaurant.location,
         workingHrs: restaurant.workingHrs,
         title: restaurant.title,
         raiting: raitings[index],
-        restaurantInfo:restaurant.restaurantInfo,
+        restaurantInfo: restaurant.restaurantInfo,
         _id: restaurant._id,
       }));
     }
     return [];
+    
   }, [restaurants]);
 
   return (
@@ -126,7 +153,7 @@ const Restaurant = () => {
         rows={rows}
       />
     </div>
-  )
-}
+  );
+};
 
-export default Restaurant
+export default Restaurant;
