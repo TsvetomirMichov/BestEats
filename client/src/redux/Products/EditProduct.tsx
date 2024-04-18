@@ -18,10 +18,7 @@ type ProductType = {
 const EditNote = () => {
     let { id } = useParams()
 
-    const note = useGetSignleProductQuery<ProductType>(id, {
-        pollingInterval: 10000,
-    
-    })
+    const note = useGetSignleProductQuery<ProductType>(id)
 
     const [text, setTodo] = useState('');
     const [title, setTodoTitle] = useState("");
@@ -42,7 +39,7 @@ const EditNote = () => {
             setPrice(note.data.price);
             setPreviewImage(note.data.todoImage)
         }
-    }, []);
+    }, [note]);
 
     const initialNote = {
         id,
