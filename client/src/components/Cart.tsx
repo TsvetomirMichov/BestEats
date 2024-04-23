@@ -31,6 +31,8 @@ const Cart = () => {
   const { t } = useTranslation()
 
   let totalPrice: number = 0;
+  let date = Date.now()
+
   const total = () => {
     productsList.forEach((item) => (totalPrice += item.price * item.quantity));
     return totalPrice.toFixed(2);
@@ -54,7 +56,7 @@ const Cart = () => {
       });
 
       if (userName !== "" && phone !== null && orderDetails.length > 0 && totalPrice > 0) {
-        await createOrder({ orderDetails, userName, phone, totalPrice }).unwrap()
+        await createOrder({ orderDetails, userName, phone, totalPrice, date }).unwrap()
         if (result) {
           dispatch(resetCart());
 
