@@ -64,10 +64,14 @@ const OrdersList = () => {
         let ordersTableData = orders.slice(startIndex, endIndex).map((item: OrderDetailsType, index: number) => (
             <div className="m-5 overflow-x-auto " key={index}>
                 <div className="flex justify-between p-2">
-                    <p key={index} className="text-md font-semibold">
-                        Order ID - {item._id}
-                    </p>
-
+                    <div className="flex flex-row gap-5 items-center ">
+                        <p key={index} className="text-md font-semibold">
+                            Order ID - {item._id}
+                        </p>
+                        <p className="font-semibold text-gray-900 dark:text-white">
+                          Created At: {new Date(item.date).toLocaleString()}
+                        </p>
+                    </div>
 
                     <div className="flex flex-row gap-5 items-center ">
                         <p key={index} className="text-md font-semibold capitalize">
