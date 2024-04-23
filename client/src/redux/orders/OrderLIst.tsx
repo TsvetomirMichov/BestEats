@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useGetOrdersQuery, useUpdateOrderMutation } from "./orderApiSlice";
+import PaginationItems from '@mui/material/Pagination';
 
 type OrderType = {
     desc: string,
@@ -8,7 +10,6 @@ type OrderType = {
     quantity: number,
     title: string
 }
-
 
 type OrderDetailsType = {
     orderDetails: [OrderType],
@@ -22,7 +23,7 @@ type OrderDetailsType = {
 
 const OrdersList = () => {
     const {
-        data: notes,
+        data: orders,
         isLoading,
         isSuccess,
     } = useGetOrdersQuery("ordersList", {
@@ -46,19 +47,40 @@ const OrdersList = () => {
         }
     };
 
+    // Pagination states
+    const [page, setPage] = useState(1);
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+    };
+
+    const ITEMS_PER_PAGE = 5;  // number of items to show per page
+
+    const startIndex = (page - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    // Pagination states
+
+
     if (isSuccess) {
-        let orders = notes.map((item: OrderDetailsType, index: number) => (
+        let ordersTableData = orders.slice(startIndex, endIndex).map((item: OrderDetailsType, index: number) => (
             <div className="m-5 overflow-x-auto " key={index}>
                 <div className="flex justify-between p-2">
-                    <p key={index} className="text-xl font-semibold">
+                    <p key={index} className="text-md font-semibold">
                         Order ID - {item._id}
                     </p>
-                    <button
-                        onClick={() => updateOrderState(item._id)}
-                        className="text-lg p-2 bg-black text-white rounded-md"
-                    >
-                        Deliver now
-                    </button>
+
+
+                    <div className="flex flex-row gap-5 items-center ">
+                        <p key={index} className="text-md font-semibold capitalize">
+                            Deliver To- {item.userName}
+                        </p>
+                        <button
+                            onClick={() => updateOrderState(item._id)}
+                            className="text-lg p-2 bg-black text-white rounded-md"
+                        >
+                            Deliver now
+                        </button>
+
+                    </div>
                 </div>
                 <div>
                     {item.orderDetails.map((order: OrderType, index: number) => (
@@ -82,7 +104,7 @@ const OrdersList = () => {
                                         <tbody>
                                             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                 <td className="px-3 py-4">
-                                                    <img className=" min-w-[10em] h-[10em] md:w-[10em] cover rounded-md border-1 border-teal-900" src={order.img} alt="" />
+                                                    <img className=" w-[15em] h-[10em] object-cover rounded-md border-1 border-teal-900" src={order.img} alt="" />
                                                 </td>
                                                 <td className="px-3 py-4 font-semibold text-gray-900 dark:text-white">
                                                     {order.title}
@@ -130,11 +152,17 @@ const OrdersList = () => {
                 </div>
             </div>
         ));
-        content = orders;
-        //console.log(notes)
+        content = ordersTableData;
+        //console.log(orders)
     }
 
-    return content;
+    return <div>
+        {content}
+        <PaginationItems count={Math.ceil(orders?.length / ITEMS_PER_PAGE)}
+            page={page}
+            onChange={handleChange} />
+    </div>;
 };
 
 export default OrdersList;
+
