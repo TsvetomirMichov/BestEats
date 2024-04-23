@@ -3,10 +3,10 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports.createOrder = async (req, res, next) => {
-    const { orderDetails, userName, phone, totalPrice } = req.body
+    const { orderDetails, userName, phone, totalPrice ,date} = req.body
 
     try {
-        const orderCreated = await OrderModule.create({ orderDetails, userName, phone, totalPrice });
+        const orderCreated = await OrderModule.create({ orderDetails, userName, phone, totalPrice, date });
 
          // Create translations folder if it doesn't exist
          const translationsDir = path.join(__dirname, '..', 'translations');
