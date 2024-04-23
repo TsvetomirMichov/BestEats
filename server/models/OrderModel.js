@@ -22,6 +22,10 @@ const OrderData = new mongoose.Schema(
             type: String,
             default: "in-progress"
         },
+          date: {
+            type: Date,
+            require: true
+        }
        
     })
 
