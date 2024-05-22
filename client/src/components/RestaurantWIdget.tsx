@@ -47,7 +47,7 @@ const RestaurantWIdget = () => {
     const {
         data: restaurants,
     } = useGetRestaurantsQuery("restaurantsList", {
-        pollingInterval: 10000,
+        pollingInterval: 9500,
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true
     })
@@ -109,7 +109,7 @@ const RestaurantWIdget = () => {
                                         restaurantData?.menuItems
                                             .filter((item: ProductType, index: number, self: ProductType[]) => self.findIndex(i => i.productId?.category === item.productId?.category) === index)
                                             .map((item: ProductType, key: number) => (
-                                                <p key={key} className='bg-slate-300 w-auto flex flex-wrap p-2 m-1 rounded-lg '>{item.productId.category}</p>
+                                                <p key={key} className='bg-slate-300 w-auto flex flex-wrap p-2 m-1 rounded-lg '>{item?.productId?.category}</p>
                                             ))
 
 
